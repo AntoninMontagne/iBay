@@ -1,6 +1,5 @@
 ﻿using Dal;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace WebAPI
 {
@@ -23,10 +22,10 @@ namespace WebAPI
         }
 
         //TPT
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().UseTptMappingStrategy();
             modelBuilder.Entity<Cart>().UseTptMappingStrategy();
-        }
+        }*/
     }
 }
