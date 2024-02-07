@@ -9,9 +9,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CartController : ControllerBase
     {
-        private readonly AppContext _context;
+        private readonly AppDBContext _context;
 
-        public CartController(AppContext context)
+        public CartController(AppDBContext context)
         {
             _context = context;
         }

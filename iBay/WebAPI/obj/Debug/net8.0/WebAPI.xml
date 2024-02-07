@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.CartController.GetCarts">
+            <summary>Get carts</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.CartController.GetCartById(System.Int32)">
+            <summary>Get cart details</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.CartController.PostCart(Dal.Cart)">
+            <summary>Create cart</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.CartController.PutCart(System.Int32,Dal.Cart)">
+            <summary>Update cart</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.CartController.AddProductsToCart(System.Int32,System.Collections.Generic.List{Dal.Product})">
+            <summary>Add products to cart</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.CartController.RemoveProductsFromCart(System.Int32,System.Collections.Generic.List{Dal.Product})">
+            <summary>Remove products to cart</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.CartController.DeleteCart(System.Int32)">
+            <summary>Delete cart</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.ProductController.GetProduct">
+            <summary>Get products</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.ProductController.GetProductById(System.Int32)">
+            <summary>Get one product details</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.ProductController.PostProduct(Dal.Product)">
+            <summary>Create product</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.ProductController.PutProduct(System.Int32,Dal.Product)">
+            <summary>Update product</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.ProductController.DeleteUser(System.Int32)">
+            <summary>Delete product</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.UserController.GetUser">
+            <summary>Get users</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.UserController.GetUserById(System.Int32)">
+            <summary>Get one user details</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.UserController.PostUser(Dal.User)">
+            <summary>Create user</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.UserController.PutUser(System.Int32,Dal.User)">
+            <summary>Update user</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.UserController.DeleteUser(System.Int32)">
+            <summary>Delete user</summary>
+        </member>
+        <member name="T:WebAPI.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI.Migrations.init2">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

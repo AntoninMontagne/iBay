@@ -9,14 +9,14 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly AppContext _context;
+        private readonly AppDBContext _context;
 
-        public UserController(AppContext context)
+        public UserController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Person
+        // GET: api/User
         /// <summary>Get users</summary>
         [HttpGet]
         public ActionResult<List<User>> GetUser()
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return Ok(users);
         }
 
-        // GET: api/Person/{id}
+        // GET: api/User/{id}
         /// <summary>Get one user details</summary>
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
@@ -56,6 +56,14 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutUser(int id, User updatedUser)
         {
+            var currentUserId = (int)HttpContext.Items["UserId"];
+
+            // Vérifiez si l'utilisateur a les autorisations nécessaires
+            if (currentUserId != id)
+            {
+                return Forbid(); // Retourne un statut 403 si le user n'a pas les autorisations
+            }
+
             if (id != updatedUser.UserId)
             {
                 return BadRequest();
@@ -80,6 +88,14 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
+            var currentUserId = (int)HttpContext.Items["UserId"];
+
+            // Vérifiez si l'utilisateur a les autorisations nécessaires
+            if (currentUserId != id)
+            {
+                return Forbid(); // Retourne un statut 403 si le user n'a pas les autorisations
+            }
+
             var user = _context.Users.FirstOrDefault(u => u.UserId == id);
 
             if (user == null)

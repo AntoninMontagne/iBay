@@ -1,6 +1,10 @@
 
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 using System.Reflection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,7 +57,7 @@ builder.WebHost.UseKestrel(options =>
     });
 });*/
 
-builder.Services.AddDbContext<AppContext>();
+builder.Services.AddDbContext<AppDBContext>();
 
 var app = builder.Build();
 
@@ -68,6 +72,10 @@ app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
+var secretKey = "secret_key";
+
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

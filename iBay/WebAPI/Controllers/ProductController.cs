@@ -8,9 +8,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly AppContext _context;
+        private readonly AppDBContext _context;
 
-        public ProductController(AppContext context)
+        public ProductController(AppDBContext context)
         {
             _context = context;
         }
@@ -44,6 +44,17 @@ namespace WebAPI.Controllers
         [HttpPost]
         public ActionResult<Product> PostProduct(Product product)
         {
+            var currentUserId = (int)HttpContext.Items["UserId"];
+
+            var currentUserRole = (string)HttpContext.Items["UserRole"];
+
+            if (currentUserRole != "seller")
+            {
+                return Forbid();
+            }
+
+            product.OwnerId = currentUserId;
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -67,6 +78,14 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
+            var currentUserId = (int)HttpContext.Items["UserId"];
+            var currentUserRole = (string)HttpContext.Items["UserRole"];
+
+            if (currentUserRole != "seller" || existingProduct.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }
+
             _context.Entry(existingProduct).CurrentValues.SetValues(updatedProduct);
 
             _context.SaveChanges();
@@ -84,6 +103,14 @@ namespace WebAPI.Controllers
             if (product == null)
             {
                 return NotFound(); // Retourne un statut 404 si le product n'est pas trouvé
+            }
+
+            var currentUserId = (int)HttpContext.Items["UserId"];
+            var currentUserRole = (string)HttpContext.Items["UserRole"];
+
+            if (currentUserRole != "seller" || product.OwnerId != currentUserId)
+            {
+                return Forbid();
             }
 
             _context.Products.Remove(product);
