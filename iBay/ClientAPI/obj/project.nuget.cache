@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cRO0O51ntTbdTYK7U/uIbLJNAzbieHi28qTJfiVpTQKhWB0NI2k6vvDhxNoqdMpk/8/JKVXQ9/UqUy3z7/spuw==",
+  "dgSpecHash": "OopIy4AmVJ+6OEYL5TCQfkACa12dT5GXr2iqRXybEbPM+ntYAzKBTyEmBZtElQ7XyKe76FwFZCHQU6n2/tArTQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\ClientAPI\\ClientAPI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\amont\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

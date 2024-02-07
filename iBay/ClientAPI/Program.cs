@@ -19,7 +19,6 @@ namespace ClientAPI
             switch (entityType)
             {
                 case "y":
-                    await CreateStudent();
                     break;
 
                 case "n":
@@ -37,7 +36,7 @@ namespace ClientAPI
         {
             Console.WriteLine("Que voulez-vous afficher : Users, Produits ou Paniers ?");
             string? choice = Console.ReadLine();
-            if (choice == "User")
+            if (choice == "Users")
             {
                 await GetUsers();
                 return true;
