@@ -4,3 +4,17 @@ C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\ne
 C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.AssemblyInfo.cs
 C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.csproj.CoreCompileInputs.cache
 C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.sourcelink.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\ClientAPI.exe
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\ClientAPI.deps.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\ClientAPI.runtimeconfig.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\ClientAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\ClientAPI.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Dal.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Dal.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.csproj.CopyComplete
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\refint\ClientAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.genruntimeconfig.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ref\ClientAPI.dll

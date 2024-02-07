@@ -1,6 +1,8 @@
 ﻿using Dal;
 using System;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace ClientAPI
 {
@@ -67,7 +69,7 @@ namespace ClientAPI
                     Console.WriteLine("User créé avec succès!");
                     string content = await response.Content.ReadAsStringAsync();
                     User createdUser = JsonConvert.DeserializeObject<User>(content);
-                    Console.WriteLine($"ID de l'étudiant créé : {createdUser.Id}");
+                    Console.WriteLine($"ID du User créé : {createdUser.UserId}");
                 }
                 else
                 {
