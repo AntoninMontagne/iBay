@@ -1,0 +1,12 @@
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\bin\Debug\net8.0\Dal.deps.json
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\bin\Debug\net8.0\Dal.dll
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\bin\Debug\net8.0\Dal.pdb
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.AssemblyInfoInputs.cache
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.AssemblyInfo.cs
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.csproj.CoreCompileInputs.cache
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.sourcelink.json
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.dll
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\refint\Dal.dll
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\Dal.pdb
+C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\Dal\obj\Debug\net8.0\ref\Dal.dll

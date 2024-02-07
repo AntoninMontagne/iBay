@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\amont\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\louga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\amont\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\louga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
