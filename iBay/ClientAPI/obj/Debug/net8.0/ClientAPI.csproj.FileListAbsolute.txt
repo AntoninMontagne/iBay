@@ -1,0 +1,6 @@
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.csproj.AssemblyReference.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.AssemblyInfoInputs.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.AssemblyInfo.cs
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.csproj.CoreCompileInputs.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.sourcelink.json
