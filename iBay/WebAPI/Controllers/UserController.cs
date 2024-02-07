@@ -9,9 +9,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly AppContext _context;
+        private readonly AppDBContext _context;
 
-        public UserController(AppContext context)
+        public UserController(AppDBContext context)
         {
             _context = context;
         }

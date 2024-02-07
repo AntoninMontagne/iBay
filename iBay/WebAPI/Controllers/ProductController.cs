@@ -8,9 +8,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly AppContext _context;
+        private readonly AppDBContext _context;
 
-        public ProductController(AppContext context)
+        public ProductController(AppDBContext context)
         {
             _context = context;
         }

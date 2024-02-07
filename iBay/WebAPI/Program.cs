@@ -53,7 +53,7 @@ builder.WebHost.UseKestrel(options =>
     });
 });*/
 
-builder.Services.AddDbContext<AppContext>();
+builder.Services.AddDbContext<AppDBContext>();
 
 var app = builder.Build();
 
