@@ -1,31 +1,45 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Dal/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Dal.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dal.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Dal/1.0.0": {
+      "type": "project",
+      "path": "../Dal/Dal.csproj",
+      "msbuildProject": "../Dal/Dal.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Dal >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\louga\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\amont\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\ClientAPI\\ClientAPI.csproj",
+      "projectUniqueName": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\ClientAPI\\ClientAPI.csproj",
       "projectName": "ClientAPI",
-      "projectPath": "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\ClientAPI\\ClientAPI.csproj",
-      "packagesPath": "C:\\Users\\louga\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\louga\\OneDrive\\Documents\\SUPINFO\\1A\\C#\\iBay\\iBay\\ClientAPI\\obj\\",
+      "projectPath": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\ClientAPI\\ClientAPI.csproj",
+      "packagesPath": "C:\\Users\\amont\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\ClientAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\louga\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\amont\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -38,7 +52,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\Dal\\Dal.csproj": {
+              "projectPath": "C:\\Users\\amont\\OneDrive\\Documents\\SupInfo\\B3\\C#\\iBay\\iBay\\Dal\\Dal.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -66,7 +84,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

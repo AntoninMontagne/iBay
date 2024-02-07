@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\appsettings.json
 C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.staticwebassets.runtime.json
@@ -71,3 +72,36 @@ C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\obj\Debug\net8.
 C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.pdb
 C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 C:\Users\louga\OneDrive\Documents\SUPINFO\1A\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
+=======
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\appsettings.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.staticwebassets.runtime.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.exe
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.deps.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.runtimeconfig.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\bin\Debug\net8.0\WebAPI.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfo.cs
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.RazorAssemblyInfo.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.RazorAssemblyInfo.cs
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.sourcelink.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.WebAPI.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.build.WebAPI.props
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebAPI.props
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebAPI.props
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\scopedcss\bundle\WebAPI.styles.css
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\scopedcss\projectbundle\WebAPI.bundle.scp.css
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\refint\WebAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
+>>>>>>> a403851484870a5b92bf9e0fabdbc51da1509529
