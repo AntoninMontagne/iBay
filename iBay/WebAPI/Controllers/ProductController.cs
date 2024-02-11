@@ -21,9 +21,28 @@ namespace WebAPI.Controllers
         /// <summary>Get products</summary>
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult<List<Product>> GetProduct()
+        public ActionResult<List<Product>> GetProduct([FromQuery] string sortBy = "addedTime", [FromQuery] int limit = 10)
         {
-            var products = _context.Products.ToList();
+            IQueryable<Product> query = _context.Products;
+
+            // Tri par date, nom ou prix
+            switch (sortBy.ToLower())
+            {
+                case "name":
+                    query = query.OrderBy(p => p.Name);
+                    break;
+                case "price":
+                    query = query.OrderBy(p => p.Price);
+                    break;
+                default:
+                    query = query.OrderBy(p => p.AddedTime);
+                    break;
+            }
+
+            // Limite le nombre de produits retournés
+            query = query.Take(limit);
+
+            var products = query.ToList();
             return Ok(products);
         }
 
@@ -56,7 +75,8 @@ namespace WebAPI.Controllers
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            return CreatedAtAction(nameof(GetProductById), new { id = product.ProductId }, product);
+            //return CreatedAtAction(nameof(GetProductById), new { id = product.ProductId }, product);
+            return Ok(new { Message = "product created successfully", Product = product });
         }
 
         /// <summary>Update product</summary>
@@ -94,7 +114,7 @@ namespace WebAPI.Controllers
 
             _context.SaveChanges();
 
-            return NoContent(); // Retourne un statut 204 si le product est modifié
+            return Ok(new { Message = "product modified successfully", Product = updatedProduct});
         }
 
         /// <summary>Delete product</summary>
@@ -126,7 +146,37 @@ namespace WebAPI.Controllers
             _context.Products.Remove(product);
             _context.SaveChanges();
 
-            return NoContent(); // Retourne un statut 204 si le product est supprimé
+            return Ok("product deleted successfully");
         }
+
+        [HttpGet("search")]
+        [AllowAnonymous]
+        public ActionResult<List<Product>> SearchProducts(string? name, decimal? price, int? ownerId)
+        {
+            var query = _context.Products.AsQueryable();
+
+            // Filtrer par nom si le paramètre name est spécifié
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(p => p.Name.Contains(name));
+            }
+
+            // Filtrer par prix si le paramètre price est spécifié
+            if (price.HasValue)
+            {
+                query = query.Where(p => p.Price == price.Value);
+            }
+
+            // Filtrer par propriétaire si le paramètre ownerId est spécifié
+            if (ownerId.HasValue)
+            {
+                query = query.Where(p => p.OwnerId == ownerId.Value);
+            }
+
+            // Exécuter la requête et renvoyer les résultats
+            var matchingProducts = query.ToList();
+            return Ok(matchingProducts);
+        }
+
     }
 }

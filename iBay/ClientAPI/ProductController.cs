@@ -1,122 +1,92 @@
-﻿using System;
+﻿using Dal;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-
-using Dal;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ClientAPI
 {
-    internal class ProductController
+    public class ProductController
     {
-        public static async Task GetProducts()
+        private static readonly HttpClient client = new HttpClient();
+
+        public ProductController(String AccessToken)
         {
-            using (var client = new HttpClient())
+            client.BaseAddress = new Uri("https://localhost:5001");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+        }
+
+        public async Task<List<Product>> GetProducts(string sort = "addedTime", string limit = "10")
+        {
+            HttpResponseMessage response = await client.GetAsync($"/api/Product?sortBy={sort}&limit={limit}");
+            if (response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                   new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.GetAsync("/api/Product");
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    List<Product>? products = JsonConvert.DeserializeObject<List<Product>>(content);
-                    foreach (Product? product in products)
-                    {
-                        Console.WriteLine($"Product: {product.Name} {product.Price} {product.Available}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Product>>(content);
+            }
+            else
+            {
+                throw new Exception("Error");
             }
         }
 
-        public static async Task GetProduct(int id)
+        public async Task<Product> GetProduct(int id)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.GetAsync($"/api/Product/{id}");
+            if (response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                      new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.GetAsync($"/api/Product/{id}");
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    Product? product = JsonConvert.DeserializeObject<Product>(content);
-                    Console.WriteLine($"Product: {product.Name} {product.Price} {product.Available}");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Product>(content);
+            }
+            else
+            {
+                throw new Exception("Error");
             }
         }
 
-        public static async Task PostProduct(Product product)
+        public async Task PostProduct(Product product)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.PostAsJsonAsync("/api/Product", product);
+            if (!response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                                         new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.PostAsJsonAsync("/api/Product", product);
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Product added");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                throw new Exception("Error");
             }
         }
 
-        public static async Task PutProduct(int id, Product product)
+        public async Task PutProduct(int id, Product product)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.PutAsJsonAsync($"/api/Product/{id}", product);
+            if (!response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                                                            new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.PutAsJsonAsync($"/api/Product/{id}", product);
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Product updated");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                throw new Exception("Error");
             }
         }
 
-        public static async Task DeleteProduct(int id)
+        public async Task DeleteProduct(int id)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.DeleteAsync($"/api/Product/{id}");
+            if (!response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                                                                              new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.DeleteAsync($"/api/Product/{id}");
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Product deleted");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                throw new Exception("Error");
+            }
+        }
+
+        public async Task<List<Product>> SearchProducts(string keyword, string value)
+        {
+            HttpResponseMessage response = await client.GetAsync($"/api/Product/search?{keyword}={value}");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Product>>(content);
+            }
+            else
+            {
+                throw new Exception("Error");
             }
         }
     }

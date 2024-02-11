@@ -1,120 +1,79 @@
-﻿using Dal;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Dal;
+using Newtonsoft.Json;
 
 namespace ClientAPI
 {
-    internal class UserController
+    public class UserController
     {
-        public static async Task GetUsers()
+        private static readonly HttpClient client = new HttpClient();
+
+        public UserController(string AccessToken)
         {
-            using (var client = new HttpClient())
+            client.BaseAddress = new Uri("https://localhost:5001");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+
+        }
+
+        public async Task<List<User>> GetUser()
+        {
+            HttpResponseMessage response = await client.GetAsync("/api/User");
+            if (response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.GetAsync("/api/User");
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    List<User>? users = JsonConvert.DeserializeObject<List<User>>(content);
-                    foreach (User? user in users)
-                    {
-                        Console.WriteLine($"Student: {user.Email} {user.Pseudo} {user.Role}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<User>>(content);
+            }
+            else
+            {
+                throw new Exception("Error");
             }
         }
 
-        public static async Task GetUser(int id)
+        public async Task<User> GetUserById(int id)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.GetAsync($"/api/User/{id}");
+            if (response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                   new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.GetAsync($"/api/User/{id}");
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    User? user = JsonConvert.DeserializeObject<User>(content);
-                    Console.WriteLine($"Student: {user.Email} {user.Pseudo} {user.Role}");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<User>(content);
+            }
+            else
+            {
+                throw new Exception("Error");
             }
         }
 
-        public static async Task PostUser(User user)
+        public async Task PostUser(User user)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.PostAsJsonAsync("/api/User", user);
+            if (!response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                      new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.PostAsJsonAsync("/api/User", user);
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("User créé avec succès!");
-                    string content = await response.Content.ReadAsStringAsync();
-                    User createdUser = JsonConvert.DeserializeObject<User>(content);
-                    Console.WriteLine($"ID du User créé : {createdUser.UserId}");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                throw new Exception("Error");
             }
         }
 
-        public static async Task PutUser(int id, User user)
+        public async Task DeleteUser(int id)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.DeleteAsync($"/api/User/{id}");
+            if (!response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                                         new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.PutAsJsonAsync($"/api/User/{id}", user);
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("User modifié avec succès!");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                throw new Exception("Error");
             }
         }
 
-        public static async Task DeleteUser(int id)
+        public async Task PutUser(int id, User user)
         {
-            using (var client = new HttpClient())
+            HttpResponseMessage response = await client.PutAsJsonAsync($"/api/User/{id}", user);
+            if (!response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri("https://localhost:5001");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                                                                         new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.DeleteAsync($"/api/User/{id}");
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("User supprimé avec succès!");
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
+                throw new Exception("Error");
             }
         }
     }

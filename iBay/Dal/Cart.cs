@@ -18,6 +18,5 @@ namespace Dal
             Products = new HashSet<Product>();
         }
 
-
     }
 }

@@ -55,7 +55,8 @@ namespace WebAPI.Controllers
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            return CreatedAtAction(nameof(GetUserById), new { id = user.UserId }, user);
+            return Ok(new { Message = "user created successfully", User = user });
+
         }
 
         /// <summary>Update user</summary>
@@ -79,7 +80,7 @@ namespace WebAPI.Controllers
 
             _context.SaveChanges();
 
-            return NoContent(); // Retourne un statut 204 si le user est modifié
+            return Ok("user modified successfully");  // Retourne un statut 204 si le user est modifié
         }
 
         /// <summary>Delete user</summary>
@@ -103,7 +104,7 @@ namespace WebAPI.Controllers
             _context.Users.Remove(user);
             _context.SaveChanges();
 
-            return NoContent(); // Retourne un statut 204 si le user est supprimé
+            return Ok("user deleted successfully");  // Retourne un statut 204 si le user est supprimé
         }
     }
 }

@@ -1,0 +1,13 @@
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\bin\Release\net8.0\Dal.deps.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\bin\Release\net8.0\Dal.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\bin\Release\net8.0\Dal.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.csproj.AssemblyReference.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.AssemblyInfoInputs.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.AssemblyInfo.cs
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.csproj.CoreCompileInputs.cache
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.sourcelink.json
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\refint\Dal.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\Dal.pdb
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\Dal\obj\Release\net8.0\ref\Dal.dll

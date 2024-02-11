@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
             _context.Carts.Add(cart);
             _context.SaveChanges();
 
-            return CreatedAtAction(nameof(GetCartById), new { id = cart.CartID }, cart);
+            return Ok(new { Message = "cart created successfully", Cart = cart });
         }
 
         // PUT: api/Product/{id}
@@ -122,7 +122,7 @@ namespace WebAPI.Controllers
             // Enregistrez les modifications dans la base de données
             _context.SaveChanges();
 
-            return Ok(existingCart);
+            return Ok(new { Message = "cart modified successfully", Cart = existingCart });
         }
 
 
@@ -154,7 +154,7 @@ namespace WebAPI.Controllers
 
             _context.SaveChanges();
 
-            return Ok(cart);
+            return Ok(new { Message = "product added successfully", Cart = cart });
         }
 
         // PUT: api/Cart/RemoveProducts/{id}
@@ -185,7 +185,7 @@ namespace WebAPI.Controllers
 
             _context.SaveChanges();
 
-            return Ok(cart);
+            return Ok(new { Message = "product removed successfully", Cart = cart });
         }
 
         // DELETE: api/Product/{id}
@@ -211,7 +211,7 @@ namespace WebAPI.Controllers
             _context.Carts.Remove(cart);
             _context.SaveChanges();
 
-            return Ok(cart);
+            return Ok(new { Message = "cart deleted successfully", Cart = cart });
         }
 
         [HttpGet("Pay/{id}")]
@@ -240,10 +240,5 @@ namespace WebAPI.Controllers
 
             return Ok(sum);
         }
-
-        /*private bool CartExists(int id)
-        {
-            return _context.Carts.Any(e => e.CartID == id);
-        }*/
     }
 }

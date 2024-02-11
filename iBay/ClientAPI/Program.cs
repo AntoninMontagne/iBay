@@ -1,80 +1,58 @@
-﻿using System.Net.Http.Headers;
-using static ClientAPI.ProductController;
-using static ClientAPI.CartController;
-using static ClientAPI.UserController;
-using Newtonsoft.Json;
-using System.Runtime.CompilerServices;
+﻿using static ClientAPI.Interact.CartInteract;
+using static ClientAPI.Interact.ProductInteract;
+using static ClientAPI.Interact.UserInteract;
+using static ClientAPI.Interact.LoginInteract;
+using Dal;
+using ClientAPI.Interact;
 
 namespace ClientAPI
 {
     public class Program
     {
-
-
-        static async Task CreateEntities()
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Voulez-vous créer un student ? (y or n)");
-            string entityType = Console.ReadLine()?.ToLowerInvariant();
+            bool exit = false;
+            string token = null;
 
-            switch (entityType)
+            while (!exit)
             {
-                case "y":
-                    break;
+                Console.WriteLine("Choose route to interact with:");
+                Console.WriteLine("1. Product");
+                Console.WriteLine("2. Cart");
+                Console.WriteLine("3. User");
+                Console.WriteLine("4. Login");
+                Console.WriteLine("5. Exit");
 
-                case "n":
-                    Console.WriteLine("Fermeture de l'application...");
-                    Environment.Exit(0);
-                    break;
+                Console.Write("Enter your choice: ");
+                string routeChoice = Console.ReadLine();
 
-                default:
-                    Console.WriteLine("Choix invalide. Veuillez choisir parmi students, teachers ou classrooms.");
-                    break;
+                ProductInteract productInteract = new ProductInteract(token);
+                CartInteract cartInteract = new CartInteract(token);
+                UserInteract userInteract = new UserInteract(token);
+
+                switch (routeChoice)
+                {
+                    case "1":
+                        await productInteract.InteractWithProductRoute();
+                        break;
+                    case "2":
+                        await cartInteract.InteractWithCartRoute();
+                        break;
+                    case "3":
+                        await userInteract.InteractWithUserRoute();
+                        break;
+                    case "4":
+                        token = await InteractWithLoginRoute();
+
+                        break;
+                    case "5":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option.");
+                        break;
+                }
             }
-        }
-
-        static async Task<bool> Show()
-        {
-            Console.WriteLine("Que voulez-vous afficher : Users, Produits ou Paniers ?");
-            string? choice = Console.ReadLine();
-            if (choice == "Users")
-            {
-                await GetUsers();
-                return true;
-            }
-            else if (choice == "Produits")
-            {
-                await GetProducts();
-                return true;
-            }
-            else if (choice == "Paniers")
-            {
-                await GetCarts();
-                return true;
-            }
-            else if (choice == "Rien")
-            {
-                return false;
-            }
-            else
-            {
-                Console.WriteLine("Erreur");
-                return true;
-            }
-        }
-
-
-        public static async Task Main(string[] args)
-        {
-            bool show = true;
-            while (show)
-            {
-                show = await Show();
-            }
-            Console.WriteLine("Voulez-vous créer une entitée :");
-
-
-            await CreateEntities();
-
         }
     }
 }
