@@ -8,26 +8,32 @@ namespace ClientAPI
     public class CartController
     {
         private static readonly HttpClient client = new HttpClient();
+        private string accessToken;
 
-        public CartController(string AccessToken)
+        public CartController(string accessToken)
         {
+            this.accessToken = accessToken;
             client.BaseAddress = new Uri("https://localhost:7129");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
 
-        public static async Task<List<Cart>> GetCarts()
+        public static async Task GetCarts()
         {
             HttpResponseMessage response = await client.GetAsync("/api/Cart");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<Cart>>(content);
+                List<Cart> carts = JsonConvert.DeserializeObject<List<Cart>>(content);
+                foreach (Cart cart in carts)
+                {
+                    Console.WriteLine($"Id : {cart.CartID}, Owner ID: {cart.OwnerId}");
+                }
             }
             else
             {
-                throw new Exception("Error");
+                Console.WriteLine("Error");
             }
         }
 
@@ -37,12 +43,22 @@ namespace ClientAPI
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Cart>(content);
+                Cart cart = JsonConvert.DeserializeObject<Cart>(content);
+                Console.WriteLine($"Id : {cart.CartID}, Owner ID: {cart.OwnerId}, List of products : ");
+                Console.WriteLine();
+                foreach (Product product in cart.Products)
+                {
+                    Console.WriteLine($"Product ID: {product.ProductId}, Product Name: {product.Name}, Product Price: {product.Price}");
+                }
+                Console.WriteLine();
+                return cart;
             }
             else
             {
-                throw new Exception("Error");
+                Console.WriteLine("Error");
+                return null;
             }
+
         }
 
         public static async Task PostCart(Cart cart)
@@ -50,7 +66,7 @@ namespace ClientAPI
             HttpResponseMessage response = await client.PostAsJsonAsync("/api/Cart", cart);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                Console.WriteLine("Error");
             }
         }
 
@@ -59,7 +75,7 @@ namespace ClientAPI
             HttpResponseMessage response = await client.DeleteAsync($"/api/Cart/{id}");
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                Console.WriteLine("Error");
             }
         }
 
@@ -68,16 +84,21 @@ namespace ClientAPI
             HttpResponseMessage response = await client.PutAsJsonAsync($"/api/Cart/{id}", cart);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                Console.WriteLine("Error");
             }
         }
 
         public static async Task AddProductToCart(int cartId, List<Product> products)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync($"/api/Cart/{cartId}/AddProduct/{cartId}", products);
+            HttpResponseMessage response = await client.PutAsJsonAsync($"/api/Cart/AddProducts/{cartId}", products);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                Console.WriteLine(cartId);
+                foreach (Product product in products)
+                {
+                    Console.WriteLine(product.ProductId);
+                }
+                Console.WriteLine("Error");
             }
         }
 
@@ -86,8 +107,14 @@ namespace ClientAPI
             HttpResponseMessage response = await client.PutAsJsonAsync($"/api/Cart/RemoveProducts/{cartId}", products);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                Console.WriteLine("Error");
             }
+        }
+
+        public void UpdateAccessToken(string newAccessToken)
+        {
+            accessToken = newAccessToken;
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", newAccessToken);
         }
     }
 }

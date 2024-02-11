@@ -18,3 +18,13 @@ C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\ne
 C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.pdb
 C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ClientAPI.genruntimeconfig.cache
 C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\obj\Debug\net8.0\ref\ClientAPI.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\amont\OneDrive\Documents\SupInfo\B3\C#\iBay\iBay\ClientAPI\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll

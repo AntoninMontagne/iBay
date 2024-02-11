@@ -40,10 +40,10 @@ namespace WebAPI.Controllers
 
             if (user == null)
             {
-                return NotFound(); // Retourne un statut 404 si le user n'est pas trouvé
+                return NotFound();
             }
 
-            return Ok(user); // Retourne un statut 200 avec le user si elle est trouvé
+            return Ok(user);
         }
 
         // POST: api/User
@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
 
             _context.SaveChanges();
 
-            return Ok("user modified successfully");  // Retourne un statut 204 si le user est modifié
+            return Ok("user modified successfully");
         }
 
         /// <summary>Delete user</summary>
@@ -98,13 +98,13 @@ namespace WebAPI.Controllers
 
             if (user == null)
             {
-                return NotFound(); // Retourne un statut 404 si le user n'est pas trouvé
+                return NotFound();
             }
 
             _context.Users.Remove(user);
             _context.SaveChanges();
 
-            return Ok("user deleted successfully");  // Retourne un statut 204 si le user est supprimé
+            return Ok("user deleted successfully");
         }
     }
 }

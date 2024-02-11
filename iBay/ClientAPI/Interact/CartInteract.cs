@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Dal;
+﻿using Dal;
 
 namespace ClientAPI.Interact
 {
@@ -25,6 +23,7 @@ namespace ClientAPI.Interact
 
             Console.Write("Enter your choice: ");
             string actionChoice = Console.ReadLine();
+            Console.WriteLine();
 
             switch (actionChoice)
             {
@@ -190,6 +189,11 @@ namespace ClientAPI.Interact
             Console.Write("Enter cart ID to delete: ");
             int deletedCartId = int.Parse(Console.ReadLine());
             await CartController.DeleteCart(deletedCartId);
+        }
+
+        public void UpdateAccessToken(string newAccessToken)
+        {
+            cartController.UpdateAccessToken(newAccessToken);
         }
 
 

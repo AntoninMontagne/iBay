@@ -15,34 +15,4 @@ public class AppDBContext : DbContext
 
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
     }
-
-    //TPH
-    /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Person>()
-            .HasDiscriminator(s => s.Type);
-
-        modelBuilder.Entity<Person>()
-            .Property(s => e.Type)
-            .HasMaxLength(200);
-            .HasColumnName("PersoneType");
-
-        modelBuilder.Entity<Person>().useTphMappingStrategy();
-    }*/
-
-    //TPT
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        //modelBuilder.Entity<>().UseTptMappingStrategy();
-    }
-
-    //TPC
-    /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Person>().UseTpcMappingStrategy();
-    }*/
-
-
-
-
 }

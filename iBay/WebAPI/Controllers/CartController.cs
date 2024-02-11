@@ -97,21 +97,17 @@ namespace WebAPI.Controllers
                 return Unauthorized();
             }
 
-            // Mettez à jour la liste des produits dans le panier
             var updatedProductIds = updatedCart.Products.Select(p => p.ProductId).ToList();
-            existingCart.Products.Clear(); // Supprimez tous les produits actuels du panier
+            existingCart.Products.Clear();
             foreach (var productId in updatedProductIds)
             {
-                // Recherchez le produit correspondant dans la base de données
                 var productInDb = _context.Products.Find(productId);
                 if (productInDb != null)
                 {
-                    // Ajoutez le produit au panier
                     existingCart.Products.Add(productInDb);
                 }
             }
 
-            // Mettez à jour l'utilisateur associé au panier
             var user = _context.Users.Find(updatedCart.OwnerId);
             if (user == null)
             {
@@ -119,7 +115,6 @@ namespace WebAPI.Controllers
             }
             existingCart.OwnerId = user.UserId;
 
-            // Enregistrez les modifications dans la base de données
             _context.SaveChanges();
 
             return Ok(new { Message = "cart modified successfully", Cart = existingCart });

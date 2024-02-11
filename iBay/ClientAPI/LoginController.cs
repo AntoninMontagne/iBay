@@ -1,4 +1,5 @@
 ﻿using Dal;
+using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
@@ -18,7 +19,11 @@ namespace ClientAPI
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    return content; // Retourner le token d'authentification
+                    JObject jsonResponse = JObject.Parse(content);
+
+                    // Extraire la valeur du token
+                    string token = (string)jsonResponse["token"]; 
+                    return token;
                 }
                 else
                 {

@@ -25,6 +25,7 @@ namespace ClientAPI.Interact
 
             Console.Write("Enter your choice: ");
             string actionChoice = Console.ReadLine();
+            Console.WriteLine();
 
             switch (actionChoice)
             {
@@ -104,6 +105,11 @@ namespace ClientAPI.Interact
                     Console.WriteLine("Invalid choice. Please enter a valid option.");
                     break;
             }
+        }
+
+        public void UpdateAccessToken(string newAccessToken)
+        {
+            userController.UpdateAccessToken(newAccessToken);
         }
     }
 }

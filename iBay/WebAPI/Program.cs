@@ -15,11 +15,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "My Simple API",
-        Description = "A simple test API",
-        TermsOfService = new Uri("https://contoso.com/terms"),
-        License = new OpenApiLicense
-        { Name = "Use under MIT", Url = new Uri("https://contoso.com/license") },
+        Title = "iBay",
+        Description = "An API to buy some products",
     });
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -41,34 +38,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("396B5DD9-CC75-411C-9311-5B6E1F391B89"))
         };
     });
-
-
-/*builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.WithOrigins("http://localhost:3000")
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});*/
-
-/*builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 443; // Port HTTPS par défaut
-});
-
-builder.WebHost.UseKestrel(options =>
-{
-    options.Limits.MaxConcurrentConnections = 100;
-    options.Limits.MaxConcurrentUpgradedConnections = 100;
-    options.Limits.MaxRequestBodySize = 10 * 1024;
-    options.ListenAnyIP(6000);
-    options.ListenAnyIP(443, listenOptions =>
-    {
-        listenOptions.UseHttps();
-    });
-});*/
 
 builder.Services.AddDbContext<AppDBContext>();
 

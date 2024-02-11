@@ -20,6 +20,7 @@ namespace ClientAPI.Interact
 
             Console.Write("Enter your choice: ");
             string actionChoice = Console.ReadLine();
+            Console.WriteLine();
 
             switch (actionChoice)
             {
@@ -48,7 +49,15 @@ namespace ClientAPI.Interact
 
         public static async Task GetProducts()
         {
-            await productController.GetProducts();
+            Console.Write("Enter sort type (addedTime, price, name) or leave empty: ");
+            string sortType = Console.ReadLine();
+            Console.Write("Enter limit or leave empty: ");
+            string limit = Console.ReadLine();
+            if (sortType == "")
+                sortType = "addedTime";
+            if (limit == "")
+                limit = "10";
+            await productController.GetProducts(sortType, limit);
         }
 
         public static async Task GetProduct()
@@ -63,8 +72,23 @@ namespace ClientAPI.Interact
             Console.WriteLine("Enter product details:");
             Console.Write("Name: ");
             string name = Console.ReadLine();
-            Console.Write("Price: ");
-            decimal price = decimal.Parse(Console.ReadLine());
+            decimal price = 0;
+            bool isValid = false;
+
+            while (!isValid)
+            {
+                Console.Write("Price: ");
+                string input = Console.ReadLine();
+
+                if (decimal.TryParse(input, out price))
+                {
+                    isValid = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid price. Please enter a valid price.");
+                }
+            }
             Console.Write("Available (true or false): ");
             bool available = bool.Parse(Console.ReadLine());
             Console.Write("Owner ID: ");
@@ -84,7 +108,13 @@ namespace ClientAPI.Interact
                 return newProduct;
             }
             else
+            {
+                Console.WriteLine("Poduct ID :");
+                int productId = int.Parse(Console.ReadLine());
+                newProduct.ProductId = productId;
                 return newProduct;
+            }
+                
         }
 
         public static async Task UpdateProduct()
@@ -119,6 +149,11 @@ namespace ClientAPI.Interact
             Console.Write("Enter product ID: ");
             int deletedProductId = int.Parse(Console.ReadLine());
             await productController.DeleteProduct(deletedProductId);
+        }
+
+        public void UpdateAccessToken(string newAccessToken)
+        {
+            productController.UpdateAccessToken(newAccessToken);
         }
 
 

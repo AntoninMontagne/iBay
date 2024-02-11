@@ -1,8 +1,4 @@
-﻿using static ClientAPI.Interact.CartInteract;
-using static ClientAPI.Interact.ProductInteract;
-using static ClientAPI.Interact.UserInteract;
-using static ClientAPI.Interact.LoginInteract;
-using Dal;
+﻿using static ClientAPI.Interact.LoginInteract;
 using ClientAPI.Interact;
 
 namespace ClientAPI
@@ -13,6 +9,10 @@ namespace ClientAPI
         {
             bool exit = false;
             string token = null;
+
+            ProductInteract productInteract = new ProductInteract(token);
+            CartInteract cartInteract = new CartInteract(token);
+            UserInteract userInteract = new UserInteract(token);
 
             while (!exit)
             {
@@ -25,10 +25,7 @@ namespace ClientAPI
 
                 Console.Write("Enter your choice: ");
                 string routeChoice = Console.ReadLine();
-
-                ProductInteract productInteract = new ProductInteract(token);
-                CartInteract cartInteract = new CartInteract(token);
-                UserInteract userInteract = new UserInteract(token);
+                Console.WriteLine();
 
                 switch (routeChoice)
                 {
@@ -36,14 +33,26 @@ namespace ClientAPI
                         await productInteract.InteractWithProductRoute();
                         break;
                     case "2":
+                        if (token == null)
+                        {
+                            Console.WriteLine("Please login first.");
+                            break;
+                        }
                         await cartInteract.InteractWithCartRoute();
                         break;
                     case "3":
+                        if (token == null)
+                        {
+                            Console.WriteLine("Please login first.");
+                            break;
+                        }
                         await userInteract.InteractWithUserRoute();
                         break;
                     case "4":
                         token = await InteractWithLoginRoute();
-
+                        productInteract.UpdateAccessToken(token);
+                        cartInteract.UpdateAccessToken(token);
+                        userInteract.UpdateAccessToken(token);
                         break;
                     case "5":
                         exit = true;

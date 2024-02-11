@@ -25,12 +25,12 @@ namespace WebAPI.Controllers
             var secretkey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("396B5DD9-CC75-411C-9311-5B6E1F391B89")); // NOTE: USE THE SAME KEY AS USED IN THE PROGRAM.CS OR STARTUP.CS FILE
             var credentials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
 
-            var claims = new[] // NOTE: could also use List<Claim> here
+            var claims = new[]
 			{
-                new Claim(ClaimTypes.Name, user.Email), // NOTE: this will be "User.Identity.Name" value; this could also specify the email address of the user as many sites use for the user name
+                new Claim(ClaimTypes.Name, user.Email),
 				new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()), // Ajouter l'ID de l'utilisateur
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
@@ -40,10 +40,8 @@ namespace WebAPI.Controllers
 
         private User Authenticate(User login)
         {
-            // Requête pour trouver l'utilisateur dans la base de données
             var user = _context.Users.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
 
-            // Si l'utilisateur est trouvé, le retourner
             if (user != null)
                 return user;
 

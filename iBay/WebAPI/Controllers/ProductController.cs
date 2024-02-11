@@ -25,7 +25,6 @@ namespace WebAPI.Controllers
         {
             IQueryable<Product> query = _context.Products;
 
-            // Tri par date, nom ou prix
             switch (sortBy.ToLower())
             {
                 case "name":
@@ -39,7 +38,6 @@ namespace WebAPI.Controllers
                     break;
             }
 
-            // Limite le nombre de produits retournés
             query = query.Take(limit);
 
             var products = query.ToList();
@@ -56,10 +54,10 @@ namespace WebAPI.Controllers
 
             if (product == null)
             {
-                return NotFound(); // Retourne un statut 404 si le product n'est pas trouvé
+                return NotFound();
             }
 
-            return Ok(product); // Retourne un statut 200 avec le product si elle est trouvé
+            return Ok(product);
         }
 
         // POST: api/Product
@@ -75,7 +73,6 @@ namespace WebAPI.Controllers
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            //return CreatedAtAction(nameof(GetProductById), new { id = product.ProductId }, product);
             return Ok(new { Message = "product created successfully", Product = product });
         }
 
@@ -102,14 +99,6 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
-           /* var currentUserId = (int)HttpContext.Items["UserId"];
-            var currentUserRole = (string)HttpContext.Items["UserRole"];
-
-            if (currentUserRole != "seller" || existingProduct.OwnerId != currentUserId)
-            {
-                return Forbid();
-            }*/
-
             _context.Entry(existingProduct).CurrentValues.SetValues(updatedProduct);
 
             _context.SaveChanges();
@@ -127,21 +116,13 @@ namespace WebAPI.Controllers
 
             if (product == null)
             {
-                return NotFound(); // Retourne un statut 404 si le product n'est pas trouvé
+                return NotFound();
             }
 
             if (!(User.FindFirst(ClaimTypes.Role)?.Value == "seller" && product.OwnerId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
             {
                 return Unauthorized();
             }
-
-            /*var currentUserId = (int)HttpContext.Items["UserId"];
-            var currentUserRole = (string)HttpContext.Items["UserRole"];
-
-            if (currentUserRole != "seller" || product.OwnerId != currentUserId)
-            {
-                return Forbid();
-            }*/
 
             _context.Products.Remove(product);
             _context.SaveChanges();
@@ -155,25 +136,21 @@ namespace WebAPI.Controllers
         {
             var query = _context.Products.AsQueryable();
 
-            // Filtrer par nom si le paramètre name est spécifié
             if (!string.IsNullOrWhiteSpace(name))
             {
                 query = query.Where(p => p.Name.Contains(name));
             }
 
-            // Filtrer par prix si le paramètre price est spécifié
             if (price.HasValue)
             {
                 query = query.Where(p => p.Price == price.Value);
             }
 
-            // Filtrer par propriétaire si le paramètre ownerId est spécifié
             if (ownerId.HasValue)
             {
                 query = query.Where(p => p.OwnerId == ownerId.Value);
             }
 
-            // Exécuter la requête et renvoyer les résultats
             var matchingProducts = query.ToList();
             return Ok(matchingProducts);
         }
