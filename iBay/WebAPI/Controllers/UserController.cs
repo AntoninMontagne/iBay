@@ -1,12 +1,13 @@
 ﻿using Dal;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using System.Security.Claims;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly AppDBContext _context;
@@ -16,7 +17,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Person
+        // GET: api/User
         /// <summary>Get users</summary>
         [HttpGet]
         public ActionResult<List<User>> GetUser()
@@ -25,11 +26,16 @@ namespace WebAPI.Controllers
             return Ok(users);
         }
 
-        // GET: api/Person/{id}
+        // GET: api/User/{id}
         /// <summary>Get one user details</summary>
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
             var user = _context.Users.FirstOrDefault(u => u.UserId == id);
 
             if (user == null)
@@ -43,6 +49,7 @@ namespace WebAPI.Controllers
         // POST: api/User
         /// <summary>Create user</summary>
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult<User> PostUser(User user)
         {
             _context.Users.Add(user);
@@ -56,9 +63,9 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutUser(int id, User updatedUser)
         {
-            if (id != updatedUser.UserId)
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
             var existingUser = _context.Users.FirstOrDefault(u => u.UserId == id);
@@ -80,6 +87,12 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
+
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
             var user = _context.Users.FirstOrDefault(u => u.UserId == id);
 
             if (user == null)

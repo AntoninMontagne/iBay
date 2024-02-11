@@ -1,11 +1,13 @@
 ﻿using Dal;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly AppDBContext _context;
@@ -18,6 +20,7 @@ namespace WebAPI.Controllers
         // GET: api/Product
         /// <summary>Get products</summary>
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<List<Product>> GetProduct()
         {
             var products = _context.Products.ToList();
@@ -27,6 +30,7 @@ namespace WebAPI.Controllers
         // GET: api/Product/{id}
         /// <summary>Get one product details</summary>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public ActionResult<Product> GetProductById(int id)
         {
             var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
@@ -44,6 +48,11 @@ namespace WebAPI.Controllers
         [HttpPost]
         public ActionResult<Product> PostProduct(Product product)
         {
+            if (User.FindFirst(ClaimTypes.Role).Value != "seller")
+            {
+                return Unauthorized();
+            }
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -55,6 +64,12 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutProduct(int id, Product updatedProduct)
         {
+            if (!(User.FindFirst(ClaimTypes.Role)?.Value == "seller" && updatedProduct.OwnerId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+            {
+                return Unauthorized();
+            }
+
+
             if (id != updatedProduct.ProductId)
             {
                 return BadRequest();
@@ -67,6 +82,14 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
+           /* var currentUserId = (int)HttpContext.Items["UserId"];
+            var currentUserRole = (string)HttpContext.Items["UserRole"];
+
+            if (currentUserRole != "seller" || existingProduct.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }*/
+
             _context.Entry(existingProduct).CurrentValues.SetValues(updatedProduct);
 
             _context.SaveChanges();
@@ -77,14 +100,28 @@ namespace WebAPI.Controllers
         /// <summary>Delete product</summary>
         // DELETE: api/Product/{id}
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteProduct(int id)
         {
+
             var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
 
             if (product == null)
             {
                 return NotFound(); // Retourne un statut 404 si le product n'est pas trouvé
             }
+
+            if (!(User.FindFirst(ClaimTypes.Role)?.Value == "seller" && product.OwnerId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+            {
+                return Unauthorized();
+            }
+
+            /*var currentUserId = (int)HttpContext.Items["UserId"];
+            var currentUserRole = (string)HttpContext.Items["UserRole"];
+
+            if (currentUserRole != "seller" || product.OwnerId != currentUserId)
+            {
+                return Forbid();
+            }*/
 
             _context.Products.Remove(product);
             _context.SaveChanges();

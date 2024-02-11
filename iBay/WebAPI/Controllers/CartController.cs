@@ -1,12 +1,16 @@
 ﻿using Dal;
-using Microsoft.AspNetCore.Http;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CartController : ControllerBase
     {
         private readonly AppDBContext _context;
@@ -29,11 +33,18 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<Cart> GetCartById(int id)
         {
-            var cart = _context.Carts.Find(id);
+            var cart = _context.Carts
+                   .Include(c => c.Products)
+                   .FirstOrDefault(c => c.CartID == id);
 
             if (cart == null)
             {
                 return NotFound();
+            }
+
+            if (User.FindFirst(ClaimTypes.NameIdentifier).Value != cart.OwnerId.ToString())
+            {
+                return Unauthorized();
             }
 
             return Ok(cart);
@@ -44,6 +55,24 @@ namespace WebAPI.Controllers
         [HttpPost]
         public ActionResult<Cart> PostCart(Cart cart)
         {
+            var list = new List<Product>();
+            foreach (var product in cart.Products)
+            {
+                var productInDb = _context.Products.Find(product.ProductId);
+                if (productInDb != null)
+                {
+                    list.Add(productInDb);
+                }
+            }
+
+            cart.Products = list;
+
+            var user = _context.Users.Find(cart.OwnerId);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+            cart.OwnerId = user.UserId;
             _context.Carts.Add(cart);
             _context.SaveChanges();
 
@@ -53,33 +82,49 @@ namespace WebAPI.Controllers
         // PUT: api/Product/{id}
         /// <summary>Update cart</summary>
         [HttpPut("{id}")]
-        public IActionResult PutCart(int id, Cart cart)
+        public IActionResult PutCart(int id, Cart updatedCart)
         {
-            if (id != cart.CartID)
+            // Recherchez le panier existant dans la base de données
+            var existingCart = _context.Carts.Include(c => c.Products).FirstOrDefault(c => c.CartID == id);
+
+            if (existingCart == null)
             {
-                return BadRequest();
+                return NotFound("Cart not found");
             }
 
-            _context.Entry(cart).State = EntityState.Modified;
-
-            try
+            if (User.FindFirst(ClaimTypes.NameIdentifier).Value != existingCart.OwnerId.ToString())
             {
-                _context.SaveChanges();
+                return Unauthorized();
             }
-            catch (DbUpdateConcurrencyException)
+
+            // Mettez à jour la liste des produits dans le panier
+            var updatedProductIds = updatedCart.Products.Select(p => p.ProductId).ToList();
+            existingCart.Products.Clear(); // Supprimez tous les produits actuels du panier
+            foreach (var productId in updatedProductIds)
             {
-                if (!CartExists(id))
+                // Recherchez le produit correspondant dans la base de données
+                var productInDb = _context.Products.Find(productId);
+                if (productInDb != null)
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
+                    // Ajoutez le produit au panier
+                    existingCart.Products.Add(productInDb);
                 }
             }
 
-            return NoContent();
+            // Mettez à jour l'utilisateur associé au panier
+            var user = _context.Users.Find(updatedCart.OwnerId);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+            existingCart.OwnerId = user.UserId;
+
+            // Enregistrez les modifications dans la base de données
+            _context.SaveChanges();
+
+            return Ok(existingCart);
         }
+
 
         // PUT: api/Cart/AddProducts/{id}
         /// <summary>Add products to cart</summary>
@@ -93,9 +138,18 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
+            if (User.FindFirst(ClaimTypes.NameIdentifier).Value != cart.OwnerId.ToString())
+            {
+                return Unauthorized();
+            }
+
             foreach (var product in products)
             {
-                cart.Products.Add(product);
+                var productInDb = _context.Products.Find(product.ProductId);
+                if (productInDb != null)
+                {
+                    cart.Products.Add(productInDb);
+                }
             }
 
             _context.SaveChanges();
@@ -115,12 +169,17 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
+            if (User.FindFirst(ClaimTypes.NameIdentifier).Value != cart.OwnerId.ToString())
+            {
+                return Unauthorized();
+            }
+
             foreach (var product in products)
             {
-                var productToRemove = cart.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
-                if (productToRemove != null)
+                var productInDb = _context.Products.Find(product.ProductId);
+                if (productInDb != null)
                 {
-                    cart.Products.Remove(productToRemove);
+                    cart.Products.Remove(productInDb);
                 }
             }
 
@@ -134,11 +193,19 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCart(int id)
         {
-            var cart = _context.Carts.Find(id);
+            Cart? cart = _context.Carts
+                   .Include(c => c.Products)
+                   .FirstOrDefault(c => c.CartID == id);
+
 
             if (cart == null)
             {
                 return NotFound();
+            }
+
+            if (User.FindFirst(ClaimTypes.NameIdentifier).Value != cart.OwnerId.ToString())
+            {
+                return Unauthorized();
             }
 
             _context.Carts.Remove(cart);
@@ -147,9 +214,36 @@ namespace WebAPI.Controllers
             return Ok(cart);
         }
 
-        private bool CartExists(int id)
+        [HttpGet("Pay/{id}")]
+        public ActionResult<int> ActionResult(int id)
+        {
+            var cart = _context.Carts
+                   .Include(c => c.Products)
+                   .FirstOrDefault(c => c.CartID == id);
+
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            if (User.FindFirst(ClaimTypes.NameIdentifier).Value != cart.OwnerId.ToString())
+            {
+                return Unauthorized();
+            }
+
+            decimal sum = 0;
+
+            foreach (var product in cart.Products)
+            {
+                sum += product.Price;
+            }
+
+            return Ok(sum);
+        }
+
+        /*private bool CartExists(int id)
         {
             return _context.Carts.Any(e => e.CartID == id);
-        }
+        }*/
     }
 }

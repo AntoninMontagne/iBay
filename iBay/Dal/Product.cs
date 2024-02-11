@@ -14,5 +14,6 @@ namespace Dal
         public decimal Price { get; set; }
         public bool Available { get; set; }
         public DateTime AddedTime { get; set; }
+        public int OwnerId { get; set; }
     }
 }

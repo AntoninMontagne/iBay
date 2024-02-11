@@ -37,7 +37,7 @@
         <member name="M:WebAPI.Controllers.ProductController.PutProduct(System.Int32,Dal.Product)">
             <summary>Update product</summary>
         </member>
-        <member name="M:WebAPI.Controllers.ProductController.DeleteUser(System.Int32)">
+        <member name="M:WebAPI.Controllers.ProductController.DeleteProduct(System.Int32)">
             <summary>Delete product</summary>
         </member>
         <member name="M:WebAPI.Controllers.UserController.GetUser">
@@ -65,6 +65,42 @@
             <inheritdoc />
         </member>
         <member name="M:WebAPI.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI.Migrations.init2">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI.Migrations.init3">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init3.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init3.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init3.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI.Migrations.init4">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI.Migrations.init4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>
