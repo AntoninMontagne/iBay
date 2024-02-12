@@ -111,6 +111,20 @@ namespace ClientAPI
             }
         }
 
+        public static async Task PayCart(int cartId)
+        {
+            HttpResponseMessage response = await client.GetAsync($"/api/Cart/Pay/{cartId}");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Cart cost : {content}");
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+        }
+
         public void UpdateAccessToken(string newAccessToken)
         {
             accessToken = newAccessToken;

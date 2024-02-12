@@ -21,13 +21,12 @@ namespace ClientAPI
                     string content = await response.Content.ReadAsStringAsync();
                     JObject jsonResponse = JObject.Parse(content);
 
-                    // Extraire la valeur du token
                     string token = (string)jsonResponse["token"]; 
                     return token;
                 }
                 else
                 {
-                    throw new Exception("Failed to login"); // Gérer les erreurs
+                    throw new Exception("Failed to login");
                 }
             }
         }

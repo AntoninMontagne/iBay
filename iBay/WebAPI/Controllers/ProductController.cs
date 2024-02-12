@@ -70,6 +70,13 @@ namespace WebAPI.Controllers
                 return Unauthorized();
             }
 
+            var user = _context.Users.FirstOrDefault(u => u.UserId == product.OwnerId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -97,6 +104,12 @@ namespace WebAPI.Controllers
             if (existingProduct == null)
             {
                 return NotFound();
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.UserId == updatedProduct.OwnerId);
+            if (user == null)
+            {
+                   return NotFound("User not found");
             }
 
             _context.Entry(existingProduct).CurrentValues.SetValues(updatedProduct);

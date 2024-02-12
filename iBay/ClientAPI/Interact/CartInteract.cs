@@ -19,7 +19,8 @@ namespace ClientAPI.Interact
             Console.WriteLine("5. Delete cart");
             Console.WriteLine("6. Add products to cart");
             Console.WriteLine("7. Remove products from cart");
-            Console.WriteLine("8. Back");
+            Console.WriteLine("8. Pay cart");
+            Console.WriteLine("9. Back");
 
             Console.Write("Enter your choice: ");
             string actionChoice = Console.ReadLine();
@@ -49,6 +50,9 @@ namespace ClientAPI.Interact
                    await RemoveProductsFromCart();
                     break;
                 case "8":
+                    await PayCart();
+                    break;
+                case "9":
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please enter a valid option.");
@@ -189,6 +193,13 @@ namespace ClientAPI.Interact
             Console.Write("Enter cart ID to delete: ");
             int deletedCartId = int.Parse(Console.ReadLine());
             await CartController.DeleteCart(deletedCartId);
+        }
+
+        public static async Task PayCart()
+        {
+            Console.Write("Enter cart ID to pay: ");
+            int cartId = int.Parse(Console.ReadLine());
+            await CartController.PayCart(cartId);
         }
 
         public void UpdateAccessToken(string newAccessToken)

@@ -41,11 +41,6 @@ namespace ClientAPI
                         await cartInteract.InteractWithCartRoute();
                         break;
                     case "3":
-                        if (token == null)
-                        {
-                            Console.WriteLine("Please login first.");
-                            break;
-                        }
                         await userInteract.InteractWithUserRoute();
                         break;
                     case "4":
