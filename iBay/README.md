@@ -8,7 +8,7 @@ Changer les informations de connection de votre base de données dans dans le fi
 
 # Lancement:
 
-Se placer dans iBay\WebAPI\bin\Release\net8.0\
+Se placer dans iBay\exec\WebAPI
 Lancer WebAPI.exe
 
 L'API est disponbile à l'adresse https://localhost:7129
